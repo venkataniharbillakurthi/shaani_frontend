@@ -1,0 +1,15 @@
+export const categories = [
+  { id: "all", name: "All", slug: "all", description: "The full Shaani Clothing catalogue.", image: "" },
+  { id: "new-collections", name: "New Collections", slug: "new-collections", description: "The latest Shaani collections.", image: "", categorySlug: "new-collections" },
+  { id: "dress-materials", name: "Dress Materials", slug: "dress-materials", description: "Unstitched fabrics for custom tailoring.", image: "", categorySlug: "dress-materials" },
+  { id: "3-piece-sets", name: "3 Piece Sets", slug: "3-piece-sets", description: "Kurti, bottoms, and dupatta.", image: "", categorySlug: "3-piece-sets" },
+  { id: "palazzo-pants", name: "Palazzo Pants", slug: "palazzo-pants", description: "Flowing palazzo pairings.", image: "", categorySlug: "palazzo-pants" },
+  { id: "plus-size", name: "Plus Size Collections", slug: "plus-size", description: "Extended sizes, same finish.", image: "", categorySlug: "plus-size" },
+  { id: "straight-pants", name: "Straight Pants", slug: "straight-pants", description: "Straight-cut comfort sets.", image: "", categorySlug: "straight-pants" },
+  { id: "tops", name: "Tops", slug: "tops", description: "Tops from the boutique.", image: "", categorySlug: "tops" },
+  { id: "nighties", name: "Nighties", slug: "nighties", description: "Nightwear styles.", image: "", categorySlug: "nighties" },
+  { id: "offer-collections", name: "Offer Collections", slug: "offer-collections", description: "Styles currently on offer.", image: "", categorySlug: "offer-collections" },
+  { id: "co-ord-sets", name: "Cord Sets", slug: "co-ord-sets", description: "Matched co-ord sets.", image: "", categorySlug: "co-ord-sets" },
+  { id: "frocks", name: "Frocks", slug: "frocks", description: "Frock styles.", image: "", categorySlug: "frocks" },
+  { id: "partywear", name: "Partywear Dresses", slug: "partywear", description: "Occasion and party dressing.", image: "", categorySlug: "partywear" },
+];

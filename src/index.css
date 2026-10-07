@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@theme {
+  --color-on-secondary-container: #78323d;
+  --color-on-tertiary-container: #caa44e;
+  --color-error-container: #ffdad6;
+  --color-surface-container: #fbeaec;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-primary-fixed-variant: #842131;
+  --color-background: #f8f3ed;
+  --color-on-secondary-fixed: #3d0411;
+  --color-on-tertiary-fixed: #251a00;
+  --color-surface-container-high: #f5e4e6;
+  --color-surface: #fff8f8;
+  --color-on-tertiary-fixed-variant: #5b4300;
+  --color-on-surface: #22191b;
+  --color-tertiary-fixed-dim: #e9c168;
+  --color-on-error-container: #93000a;
+  --color-primary-container: #781829;
+  --color-secondary-container: #fd9ea8;
+  --color-inverse-surface: #382e30;
+  --color-on-background: #22191b;
+  --color-on-primary: #ffffff;
+  --color-secondary: #934751;
+  --color-surface-dim: #e7d6d8;
+  --color-on-secondary-fixed-variant: #76303a;
+  --color-surface-bright: #fff8f8;
+  --color-tertiary-fixed: #ffdf9c;
+  --color-surface-container-highest: #f0dee1;
+  --color-on-error: #ffffff;
+  --color-inverse-primary: #ffb2b7;
+  --color-tertiary-container: #503b00;
+  --color-primary-fixed-dim: #ffb2b7;
+  --color-secondary-fixed: #ffdadc;
+  --color-on-primary-container: #ff848f;
+  --color-primary-fixed: #ffdadb;
+  --color-on-tertiary: #ffffff;
+  --color-outline: #897172;
+  --color-surface-container-low: #fff0f2;
+  --color-secondary-fixed-dim: #ffb2b9;
+  --color-outline-variant: #ddc0c0;
+  --color-on-primary-fixed: #40000d;
+  --color-on-surface-variant: #564242;
+  --color-error: #ba1a1a;
+  --color-inverse-on-surface: #feecef;
+  --color-tertiary: #352600;
+  --color-surface-variant: #f0dee1;
+  --color-primary: #781829;
+  --color-on-secondary: #ffffff;
+  --color-surface-tint: #a43947;
+
+  --font-body-lg: "Inter", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-headline-sm: "Montserrat", sans-serif;
+  --font-headline-lg: "Montserrat", sans-serif;
+  --font-editorial-quote: "Inter", sans-serif;
+  --font-label-uppercase: "Inter", sans-serif;
+  --font-headline-lg-mobile: "Montserrat", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-display-hero: "Montserrat", sans-serif;
+  --font-label-caption: "Inter", sans-serif;
+  --font-display-hero-mobile: "Montserrat", sans-serif;
+  --font-headline-md: "Montserrat", sans-serif;
+
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 26px;
+  --text-body-lg--font-weight: 400;
+  --text-body-md: 14px;
+  --text-body-md--line-height: 22px;
+  --text-body-md--font-weight: 400;
+  --text-headline-sm: 22px;
+  --text-headline-sm--line-height: 28px;
+  --text-headline-sm--font-weight: 500;
+  --text-headline-lg: 40px;
+  --text-headline-lg--line-height: 48px;
+  --text-headline-lg--letter-spacing: -0.01em;
+  --text-headline-lg--font-weight: 600;
+  --text-editorial-quote: 20px;
+  --text-editorial-quote--line-height: 30px;
+  --text-editorial-quote--letter-spacing: 0.01em;
+  --text-editorial-quote--font-weight: 400;
+  --text-label-uppercase: 11px;
+  --text-label-uppercase--line-height: 16px;
+  --text-label-uppercase--letter-spacing: 0.15em;
+  --text-label-uppercase--font-weight: 600;
+  --text-headline-lg-mobile: 28px;
+  --text-headline-lg-mobile--line-height: 36px;
+  --text-headline-lg-mobile--font-weight: 600;
+  --text-body-sm: 12px;
+  --text-body-sm--line-height: 18px;
+  --text-body-sm--font-weight: 400;
+  --text-display-hero: 56px;
+  --text-display-hero--line-height: 64px;
+  --text-display-hero--letter-spacing: -0.02em;
+  --text-display-hero--font-weight: 600;
+  --text-label-caption: 13px;
+  --text-label-caption--line-height: 18px;
+  --text-label-caption--letter-spacing: 0.02em;
+  --text-label-caption--font-weight: 500;
+  --text-display-hero-mobile: 36px;
+  --text-display-hero-mobile--line-height: 44px;
+  --text-display-hero-mobile--letter-spacing: -0.01em;
+  --text-display-hero-mobile--font-weight: 600;
+  --text-headline-md: 28px;
+  --text-headline-md--line-height: 36px;
+  --text-headline-md--font-weight: 500;
+
+  --radius: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+
+  --spacing-space-xs: 0.25rem;
+  --spacing-margin-mobile: 1.25rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-md: 1rem;
+  --spacing-margin: 3rem;
+  --spacing-space-xl: 2.5rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-gutter-mobile: 1rem;
+  --spacing-gutter: 1.5rem;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overscroll-behavior: none;
+}
+
+main > :first-child {
+  margin-top: 0 !important;
+}
+
+main > :last-child {
+  margin-bottom: 0 !important;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  vertical-align: middle;
+}
