@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { SITE_URL } from "../../constants/site";
+import { SITE_KEYWORDS, SITE_URL } from "../../constants/site";
 
 function upsertMeta(attribute, key, content) {
   let element = document.head.querySelector(`meta[${attribute}="${key}"]`);
@@ -21,11 +21,16 @@ function upsertLink(rel, href) {
   element.setAttribute("href", href);
 }
 
-export default function Seo({ title, description, path = "/", image, noIndex = false, jsonLd }) {
+export default function Seo({ title, description, keywords = SITE_KEYWORDS, path = "/", image, noIndex = false, jsonLd }) {
   useEffect(() => {
     const url = `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
     document.title = title;
     upsertMeta("name", "description", description);
+    upsertMeta("name", "keywords", keywords);
+    upsertMeta("name", "geo.region", "IN-TG");
+    upsertMeta("name", "geo.placename", "Kodad, Telangana");
+    upsertMeta("name", "geo.position", "16.995249;79.964787");
+    upsertMeta("name", "ICBM", "16.995249, 79.964787");
     upsertMeta("name", "robots", noIndex ? "noindex, nofollow" : "index, follow");
     upsertLink("canonical", url);
     upsertMeta("property", "og:title", title);
@@ -50,7 +55,7 @@ export default function Seo({ title, description, path = "/", image, noIndex = f
     script.type = "application/ld+json";
     script.textContent = JSON.stringify(jsonLd);
     if (!existing) document.head.appendChild(script);
-  }, [title, description, path, image, noIndex, jsonLd]);
+  }, [title, description, keywords, path, image, noIndex, jsonLd]);
 
   return null;
 }
