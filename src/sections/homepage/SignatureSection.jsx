@@ -38,7 +38,7 @@ export default function SignatureSection({ product }) {
             className="relative p-3 sm:p-4 bg-surface-container-lowest rounded-3xl shadow-[0_18px_40px_rgba(75,15,27,0.12)] border border-[#c5a04a]/40"
           >
             <div className="rounded-2xl overflow-hidden aspect-[4/5] relative">
-              <img alt={product.alt || product.name} className="w-full h-full object-cover object-top" src={image} />
+              <img alt={product.alt || product.name} loading="lazy" decoding="async" className="w-full h-full object-cover object-top" src={image} />
               <div className="absolute inset-0 bg-gradient-to-t from-[#2a1016]/70 via-transparent to-transparent pointer-events-none" />
               <div className="absolute bottom-4 left-4 right-4 bg-[#fff8f8]/92 backdrop-blur-md px-4 py-3 rounded-full border border-[#c5a04a]/30 flex items-center justify-between gap-3">
                 <PricePair price={product.price} originalPrice={product.originalPrice} />

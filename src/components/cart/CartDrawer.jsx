@@ -64,7 +64,7 @@ export default function CartDrawer() {
                     const sizes = product?.sizes ?? [item.size];
                     return (
                       <li key={item.key} className="flex min-w-0 gap-3 border-b border-[#E9D8C5] py-4">
-                        <img src={item.image} alt="" className="h-[88px] w-[72px] shrink-0 object-cover" />
+                        <img src={item.image} alt="" loading="lazy" decoding="async" className="h-[88px] w-[72px] shrink-0 object-cover" />
                         <div className="min-w-0 flex-1">
                           <div className="flex items-start justify-between gap-2">
                             <Link to={`/product/${item.slug}`} onClick={closeCart} className="font-headline-sm text-sm leading-5 text-[#241B1D]">

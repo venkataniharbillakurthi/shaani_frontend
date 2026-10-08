@@ -26,6 +26,8 @@ export default function WhyChooseSection() {
         src={LOGO_SRC}
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         className="pointer-events-none absolute top-1/2 left-1/2 h-[min(42vw,220px)] w-[min(42vw,220px)] -translate-x-1/2 -translate-y-1/2 object-contain opacity-[0.12] select-none"
       />
       <div className="relative z-10 mx-auto max-w-7xl">

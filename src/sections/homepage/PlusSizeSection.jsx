@@ -21,7 +21,7 @@ export default function PlusSizeSection({ products = [] }) {
         </div>
         <div className="grid gap-6 md:grid-cols-[1.2fr_1fr]">
           <Link to={`/product/${featured.slug}`} className="block">
-            <img src={featured.images?.[0] ?? featured.image} alt={featured.alt || featured.name} className="aspect-[4/5] w-full object-cover" />
+            <img src={featured.images?.[0] ?? featured.image} alt={featured.alt || featured.name} loading="lazy" decoding="async" className="aspect-[4/5] w-full object-cover" />
             <p className="mt-3 font-headline-sm text-lg text-[#241B1D]">{featured.name}</p>
           </Link>
           <motion.div className="grid grid-cols-2 gap-4" variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true }}>

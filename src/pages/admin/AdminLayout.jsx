@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import Seo from "../../components/seo/Seo";
 import { LOGO_SRC } from "../../constants/site";
@@ -19,7 +20,7 @@ export default function AdminLayout() {
       <header className="sticky top-0 z-20 border-b border-[#E9D8C5] bg-[#FFFDFC]/95 backdrop-blur">
         <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3 sm:max-w-5xl">
           <div className="flex min-w-0 items-center gap-3">
-            <img src={LOGO_SRC} alt="Shaani Clothing" className="h-11 w-11 shrink-0 rounded-full object-cover ring-2 ring-[#C5A04A] shadow-[0_6px_18px_rgba(75,15,27,0.18)] sm:h-14 sm:w-14" />
+            <img src={LOGO_SRC} alt="Shaani Clothing" decoding="async" className="h-11 w-11 shrink-0 rounded-full object-cover ring-2 ring-[#C5A04A] shadow-[0_6px_18px_rgba(75,15,27,0.18)] sm:h-14 sm:w-14" />
             <div className="min-w-0">
               <p className="text-[10px] tracking-[0.2em] text-[#C5A04A] uppercase">Shaani Clothing</p>
               <p className="truncate font-headline-sm text-xl text-[#4B0F1B]">Admin</p>
@@ -45,7 +46,9 @@ export default function AdminLayout() {
         </div>
       </header>
       <main className="mx-auto max-w-3xl px-4 py-5 pb-28 sm:max-w-6xl sm:py-8 sm:pb-8">
-        <Outlet />
+        <Suspense fallback={<div className="min-h-[40vh]" aria-hidden="true" />}>
+          <Outlet />
+        </Suspense>
       </main>
       <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-[#E9D8C5] bg-[#FFFDFC]/95 px-2 pt-2 backdrop-blur sm:hidden" style={{ paddingBottom: "max(0.5rem, env(safe-area-inset-bottom))" }}>
         <div className="grid grid-cols-5 gap-1">

@@ -24,7 +24,7 @@ export default function CategoriesSection() {
               <Link key={item.slug} to={`/shop?category=${item.slug}`} className="group flex min-w-0 flex-col items-center gap-2 sm:gap-3">
                 <span className="w-full max-w-[132px] rounded-full border-2 border-[#4B0F1B] p-1">
                   {image ? (
-                    <img src={image} alt={item.name} className="aspect-square w-full rounded-full object-cover" />
+                    <img src={image} alt={item.name} loading="lazy" decoding="async" className="aspect-square w-full rounded-full object-cover" />
                   ) : (
                     <span className="flex aspect-square w-full items-center justify-center rounded-full bg-[#4B0F1B] px-2 text-center text-[10px] leading-tight text-[#F8F3ED] sm:text-[11px] sm:leading-4">
                       {item.name}

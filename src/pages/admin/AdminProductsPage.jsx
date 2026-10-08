@@ -64,7 +64,7 @@ function ProductForm({ form, setField, toggleSize, newArrivalCount, error, pendi
             <input required type="url" value={form.image} onChange={(event) => setField("image", event.target.value)} placeholder="https://" className={fieldClass} />
           </label>
           {uploadError ? <p className="mt-2 text-sm text-[#781829]">{uploadError}</p> : null}
-          {form.image ? <img src={form.image} alt="" className="mt-3 h-28 w-24 rounded-2xl object-cover" /> : null}
+          {form.image ? <img src={form.image} alt="" loading="lazy" decoding="async" className="mt-3 h-28 w-24 rounded-2xl object-cover" /> : null}
         </div>
         <label className="text-sm">
           Actual price
@@ -296,7 +296,7 @@ export default function AdminProductsPage() {
         {visible.map((product) => (
           <article key={product.id} className="rounded-3xl border border-[#E9D8C5] bg-[#FFFDFC] p-3 sm:p-4">
             <div className="flex gap-3">
-              <img src={product.image} alt="" className="h-24 w-20 shrink-0 rounded-2xl object-cover sm:h-28 sm:w-24" />
+              <img src={product.image} alt="" loading="lazy" decoding="async" className="h-24 w-20 shrink-0 rounded-2xl object-cover sm:h-28 sm:w-24" />
               <div className="min-w-0 flex-1">
                 <div className="flex flex-wrap items-center gap-2">
                   {product.tags?.includes("new-arrival") ? <span className="rounded-full bg-[#4B0F1B] px-2 py-0.5 text-[10px] tracking-[0.12em] text-[#FFFDFC] uppercase">New Arrival</span> : null}

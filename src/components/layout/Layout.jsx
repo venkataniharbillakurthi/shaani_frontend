@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import CartDrawer from "../cart/CartDrawer";
 import WhatsAppButton from "../common/WhatsAppButton";
@@ -25,7 +25,9 @@ export default function Layout() {
       <SiteSeo />
       <Header />
       <main className={`w-full bg-background min-h-screen ${pathname === "/" ? "pt-0" : "pt-[124px]"}`}>
-        <Outlet />
+        <Suspense fallback={<div className="min-h-[50vh]" aria-hidden="true" />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
       <CartDrawer />

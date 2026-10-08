@@ -159,7 +159,7 @@ export default function CartPage() {
                 return (
                   <motion.article key={item.key} layout className="rounded-2xl border border-[#E9D8C5] bg-[#FFFDFC] p-4">
                     <div className="flex gap-4">
-                      <img alt="" src={item.image} className="h-24 w-20 rounded-xl object-cover sm:h-28 sm:w-24" />
+                      <img alt="" src={item.image} loading="lazy" decoding="async" className="h-24 w-20 rounded-xl object-cover sm:h-28 sm:w-24" />
                       <div className="min-w-0 flex-1">
                         <div className="flex items-start justify-between gap-2">
                           <h2 className="min-w-0 break-words text-[#4B0F1B]">{item.title}</h2>

@@ -13,7 +13,7 @@ export default function OccasionSection() {
           {occasions.map((occasion) => (
             <motion.div key={occasion.id} variants={staggerItem}>
               <Link to={`/shop?category=${occasion.category}`} className="group block">
-                <img src={occasion.image} alt={occasion.title} loading="lazy" className="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
+                <img src={occasion.image} alt={occasion.title} loading="lazy" decoding="async" className="aspect-[3/4] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" />
                 <h3 className="mt-3 font-headline-sm text-lg text-[#241B1D]">{occasion.title}</h3>
                 <p className="font-body-sm text-[#241B1D]/80">{occasion.description}</p>
               </Link>

@@ -22,6 +22,8 @@ export default function Footer() {
           <motion.div variants={columnVariants} className="flex flex-col gap-4">
             <img
               alt="Shaani Clothing"
+              loading="lazy"
+              decoding="async"
               className="h-16 w-16 rounded-full object-cover ring-2 ring-[#c5a04a]"
               src={LOGO_SRC}
             />

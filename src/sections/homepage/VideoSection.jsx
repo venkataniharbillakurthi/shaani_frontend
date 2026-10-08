@@ -8,6 +8,8 @@ export default function VideoSection() {
         <div className="relative flex aspect-[4/5] w-full flex-col items-center justify-center overflow-hidden p-6 text-center sm:aspect-[16/9] sm:p-8 md:aspect-[21/9]">
           <img
             alt="Cinematic backdrop of Indian boutique workshop"
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 w-full h-full object-cover opacity-25"
             src={BACKDROP}
           />

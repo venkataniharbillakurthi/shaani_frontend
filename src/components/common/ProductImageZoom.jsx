@@ -66,7 +66,7 @@ export default function ProductImageZoom({ src, alt }) {
   return (
     <>
       <button type="button" onClick={() => setOpen(true)} aria-label={`Zoom ${alt}`} className="block w-full cursor-zoom-in">
-        <img src={src} alt={alt} className="aspect-[4/5] w-full object-cover" />
+        <img src={src} alt={alt} fetchPriority="high" decoding="async" className="aspect-[4/5] w-full object-cover" />
       </button>
       {open
         ? createPortal(

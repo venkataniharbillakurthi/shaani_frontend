@@ -18,6 +18,7 @@ export default function ProductCard({ product, variants = staggerItem }) {
         alt={product.alt || product.name}
         src={image}
         loading="lazy"
+        decoding="async"
         className={`h-full w-full object-cover ${soldOut ? "brightness-90" : ""}`}
         whileHover={soldOut ? undefined : imageHover}
         transition={{ duration: 0.45 }}

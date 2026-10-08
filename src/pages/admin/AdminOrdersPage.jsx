@@ -300,7 +300,7 @@ export default function AdminOrdersPage() {
                       <ul className="mt-2 space-y-2">
                         {order.items.map((item) => (
                           <li key={`${item.productId}-${item.size}-${item.title}`} className="flex gap-3 text-sm">
-                            {item.image ? <img src={item.image} alt="" className="h-14 w-12 rounded-lg object-cover" /> : null}
+                            {item.image ? <img src={item.image} alt="" loading="lazy" decoding="async" className="h-14 w-12 rounded-lg object-cover" /> : null}
                             <span className="min-w-0 break-words">
                               {item.title}
                               <span className="block text-xs text-[#241B1D]/60">Size {item.size} · Qty {item.qty} · {formatPrice(item.lineTotal)}</span>

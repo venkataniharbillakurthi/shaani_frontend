@@ -57,7 +57,7 @@ export default function ProductDetailsPage() {
           <div className="relative overflow-hidden rounded-2xl border border-[#E9D8C5]">
             {soldOut ? (
               <>
-                <img src={images[active]} alt={product.alt || product.name} className="aspect-[4/5] w-full object-cover brightness-90" />
+                <img src={images[active]} alt={product.alt || product.name} fetchPriority="high" decoding="async" className="aspect-[4/5] w-full object-cover brightness-90" />
                 <span className="absolute inset-0 bg-[#241B1D]/20" />
                 <span className="absolute inset-0 flex items-center justify-center">
                   <span className="flex h-20 w-20 items-center justify-center rounded-full bg-[#FFFDFC] text-center text-xs font-semibold leading-tight text-[#241B1D]">
@@ -81,7 +81,7 @@ export default function ProductDetailsPage() {
                   aria-label={`View image ${index + 1}`}
                   className={`overflow-hidden rounded-xl border-2 ${active === index ? "border-[#781829]" : "border-[#E9D8C5]"}`}
                 >
-                  <img src={src} alt="" className="h-20 w-16 object-cover" />
+                  <img src={src} alt="" loading="lazy" decoding="async" className="h-20 w-16 object-cover" />
                 </button>
               ))}
             </div>

@@ -23,7 +23,7 @@ export default function AboutPage() {
   return (
     <article className="bg-[#F8F3ED] text-[#241B1D]">
       <header className="relative overflow-hidden bg-[#4B0F1B] text-[#FFFDFC]">
-        <img src={HERO_IMAGE} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+        <img src={HERO_IMAGE} alt="" fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover opacity-30" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#4B0F1B] via-[#4B0F1B]/85 to-[#4B0F1B]/35" />
         <div className="relative mx-auto max-w-6xl px-margin-mobile py-16 md:px-margin md:py-24">
           <p className="font-label-uppercase text-[11px] tracking-[0.22em] text-[#C5A04A] uppercase">About Shaani Clothing</p>

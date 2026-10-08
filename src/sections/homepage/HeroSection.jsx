@@ -11,6 +11,8 @@ export default function HeroSection() {
             alt="Shaani Clothing ensemble in a heritage palace courtyard"
             className="h-full w-full origin-[center_36%] scale-[1.22] object-cover object-[center_32%] md:origin-center md:scale-100 md:object-center"
             src={HERO_IMAGE_MOBILE}
+            fetchPriority="high"
+            decoding="async"
           />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1012]/92 via-[#1a1012]/35 to-[#1a1012]/15 md:hidden" />

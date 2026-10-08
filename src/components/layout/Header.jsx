@@ -111,6 +111,7 @@ export default function Header() {
             >
               <img
                 alt="Shaani Clothing"
+                decoding="async"
                 className="h-16 w-16 rounded-full object-cover ring-2 ring-[#c5a04a] shadow-[0_6px_18px_rgba(75,15,27,0.18)]"
                 src={LOGO_SRC}
               />

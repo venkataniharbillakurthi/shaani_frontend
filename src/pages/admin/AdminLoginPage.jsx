@@ -32,7 +32,7 @@ export default function AdminLoginPage() {
     <div className="flex min-h-screen items-center justify-center bg-[#F8F3ED] px-4">
       <Seo title="Admin sign in | Shaani Clothing" description="Sign in to the Shaani Clothing admin panel." path="/admin/login" noIndex />
       <form onSubmit={onSubmit} className="w-full max-w-md rounded-3xl border border-[#E9D8C5] bg-[#FFFDFC] p-5 sm:p-8">
-        <img src={LOGO_SRC} alt="Shaani Clothing" className="mx-auto h-20 w-20 rounded-full object-cover ring-2 ring-[#C5A04A] shadow-[0_6px_18px_rgba(75,15,27,0.18)]" />
+        <img src={LOGO_SRC} alt="Shaani Clothing" decoding="async" className="mx-auto h-20 w-20 rounded-full object-cover ring-2 ring-[#C5A04A] shadow-[0_6px_18px_rgba(75,15,27,0.18)]" />
         <h1 className="mt-4 text-center font-headline-sm text-3xl text-[#4B0F1B]">Admin sign in</h1>
         <label className="mt-6 block text-sm">
           Username

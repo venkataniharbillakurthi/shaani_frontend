@@ -58,12 +58,12 @@ export default function ShopPage() {
         <span className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[#C5A04A]" />
         <div className="pointer-events-none absolute inset-y-0 left-4 hidden items-center gap-3 lg:flex">
           {bannerImages.slice(0, 3).map((src, index) => (
-            <img key={`left-${index}`} src={src} alt="" className={`h-16 w-12 object-cover ring-1 ring-[#C5A04A]/70 ${index === 1 ? "-rotate-3" : "rotate-3"}`} />
+            <img key={`left-${index}`} src={src} alt="" loading="lazy" decoding="async" className={`h-16 w-12 object-cover ring-1 ring-[#C5A04A]/70 ${index === 1 ? "-rotate-3" : "rotate-3"}`} />
           ))}
         </div>
         <div className="pointer-events-none absolute inset-y-0 right-4 hidden items-center gap-3 lg:flex">
           {bannerImages.slice(3, 6).map((src, index) => (
-            <img key={`right-${index}`} src={src} alt="" className={`h-16 w-12 object-cover ring-1 ring-[#C5A04A]/70 ${index === 1 ? "rotate-3" : "-rotate-3"}`} />
+            <img key={`right-${index}`} src={src} alt="" loading="lazy" decoding="async" className={`h-16 w-12 object-cover ring-1 ring-[#C5A04A]/70 ${index === 1 ? "rotate-3" : "-rotate-3"}`} />
           ))}
         </div>
         <p className="font-label-uppercase text-[11px] tracking-[0.22em] text-[#C5A04A] uppercase">Atelier Kodad</p>

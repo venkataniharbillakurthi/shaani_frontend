@@ -35,6 +35,8 @@ export default function BrandStorySection() {
           <div className="relative p-3 bg-surface-container-lowest rounded-2xl shadow-xl border border-[#c5a04a]/30">
             <img
               alt="Indian boutique founder examining rich fabrics with artisans at workshop table"
+              loading="lazy"
+              decoding="async"
               className="w-full aspect-[4/3] object-cover rounded-xl"
               src={STORY_IMAGE}
             />

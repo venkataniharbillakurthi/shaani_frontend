@@ -1,13 +1,19 @@
+import { lazy, Suspense } from "react";
 import { useCatalog } from "../../context/CatalogContext";
 import { getNewArrivals } from "../../utils/productSelectors";
-import CategoriesSection from "../../sections/homepage/CategoriesSection";
 import HeroSection from "../../sections/homepage/HeroSection";
-import InstagramSection from "../../sections/homepage/InstagramSection";
-import NewArrivalsSection from "../../sections/homepage/NewArrivalsSection";
-import ReviewsSection from "../../sections/homepage/ReviewsSection";
-import VideoSection from "../../sections/homepage/VideoSection";
-import WhatsAppSection from "../../sections/homepage/WhatsAppSection";
-import WhyChooseSection from "../../sections/homepage/WhyChooseSection";
+
+const CategoriesSection = lazy(() => import("../../sections/homepage/CategoriesSection"));
+const NewArrivalsSection = lazy(() => import("../../sections/homepage/NewArrivalsSection"));
+const WhyChooseSection = lazy(() => import("../../sections/homepage/WhyChooseSection"));
+const VideoSection = lazy(() => import("../../sections/homepage/VideoSection"));
+const ReviewsSection = lazy(() => import("../../sections/homepage/ReviewsSection"));
+const InstagramSection = lazy(() => import("../../sections/homepage/InstagramSection"));
+const WhatsAppSection = lazy(() => import("../../sections/homepage/WhatsAppSection"));
+
+function SectionFallback() {
+  return <div className="min-h-16" aria-hidden="true" />;
+}
 
 export default function HomePage() {
   const { products } = useCatalog();
@@ -16,13 +22,27 @@ export default function HomePage() {
   return (
     <div className="flex flex-col w-full">
       <HeroSection />
-      <CategoriesSection />
-      <NewArrivalsSection products={newArrivals} />
-      <WhyChooseSection />
-      <VideoSection />
-      <ReviewsSection />
-      <InstagramSection />
-      <WhatsAppSection />
+      <Suspense fallback={<SectionFallback />}>
+        <CategoriesSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <NewArrivalsSection products={newArrivals} />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <WhyChooseSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <VideoSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <ReviewsSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <InstagramSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <WhatsAppSection />
+      </Suspense>
     </div>
   );
 }

@@ -17,6 +17,8 @@ export default function NewArrivalsSection({ products = [] }) {
                   <img
                     src={product.images?.[0] ?? product.image}
                     alt={product.alt || product.name}
+                    loading="lazy"
+                    decoding="async"
                     className={`h-full w-full object-cover ${soldOut ? "brightness-90" : ""}`}
                   />
                   {soldOut ? (
