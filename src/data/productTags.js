@@ -13,4 +13,4 @@ export const PRODUCT_CATEGORIES = [
   "Partywear Dresses",
 ];
 
-export const PRODUCT_SIZES = ["M", "L", "XL", "2XL", "3XL", "5XL", "7XL", "Free Size"];
+export const PRODUCT_SIZES = ["M", "L", "XL", "2XL", "3XL", "4XL", "5XL", "6XL", "7XL", "Free Size"];
