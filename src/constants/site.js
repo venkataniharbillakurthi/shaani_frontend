@@ -1,7 +1,7 @@
 export const LOGO_SRC =
   "https://shaaniclothing.sgp1.cdn.digitaloceanspaces.com/shaani_logo_ctvfiv.png";
 export const HERO_IMAGE =
-  "https://shaaniclothing.sgp1.cdn.digitaloceanspaces.com/shaani_hero_desktop.png";
+  "https://shaaniclothing.sgp1.cdn.digitaloceanspaces.com/file_00000000fbd88211b507c99db29cf5c4.png";
 export const HERO_IMAGE_MOBILE =
   "https://shaaniclothing.sgp1.cdn.digitaloceanspaces.com/shaani_hero_moblie.png";
 
