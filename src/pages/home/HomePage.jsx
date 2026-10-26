@@ -4,6 +4,7 @@ import { getNewArrivals } from "../../utils/productSelectors";
 import HeroSection from "../../sections/homepage/HeroSection";
 
 const CategoriesSection = lazy(() => import("../../sections/homepage/CategoriesSection"));
+const ExclusiveCollectionSection = lazy(() => import("../../sections/homepage/ExclusiveCollectionSection"));
 const NewArrivalsSection = lazy(() => import("../../sections/homepage/NewArrivalsSection"));
 const WhyChooseSection = lazy(() => import("../../sections/homepage/WhyChooseSection"));
 const VideoSection = lazy(() => import("../../sections/homepage/VideoSection"));
@@ -21,12 +22,15 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col w-full">
-      <HeroSection />
       <Suspense fallback={<SectionFallback />}>
         <CategoriesSection />
       </Suspense>
+      <HeroSection />
       <Suspense fallback={<SectionFallback />}>
         <NewArrivalsSection products={newArrivals} />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <ExclusiveCollectionSection products={products} />
       </Suspense>
       <Suspense fallback={<SectionFallback />}>
         <WhyChooseSection />
