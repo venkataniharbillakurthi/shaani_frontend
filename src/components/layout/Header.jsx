@@ -1,20 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { LOGO_SRC, NAV_LINKS, WHATSAPP_URL } from "../../constants/site";
 import { useCart } from "../../context/CartContext";
 
 const iconButtonClass =
-  "w-11 h-11 rounded-full border border-[#c5a04a]/45 bg-white/90 shadow-sm flex items-center justify-center text-on-surface-variant hover:text-primary hover:bg-[#fbeaec] hover:border-[#c5a04a] transition-all";
-
-const linkClass =
-  (onHero) =>
-  ({ isActive }) =>
-    isActive
-      ? "rounded-full px-4 py-2 bg-[#781829] text-[#fff8f8] font-label-uppercase text-[12px] tracking-[0.16em] uppercase shadow-sm"
-      : onHero
-        ? "rounded-full px-4 py-2 font-label-uppercase text-[12px] tracking-[0.16em] uppercase text-white/95 hover:text-[#ffdf9c] hover:bg-white/10 transition-colors"
-        : "rounded-full px-4 py-2 font-label-uppercase text-[12px] tracking-[0.16em] uppercase text-on-surface-variant hover:text-primary hover:bg-[#fbeaec] transition-colors";
+  "relative flex size-10 items-center justify-center text-[#241B1D] transition-colors hover:text-primary";
 
 function NavItem({ to, label, onClick, className }) {
   return (
@@ -24,25 +15,18 @@ function NavItem({ to, label, onClick, className }) {
   );
 }
 
-const menuVariants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.06, delayChildren: 0.05 } },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: -10 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } },
-};
+const desktopLinkClass = ({ isActive }) =>
+  `px-2 py-3 text-[15px] font-medium transition-colors hover:text-primary ${
+    isActive ? "text-primary" : "text-[#241B1D]"
+  }`;
 
 export default function Header() {
   const { pathname } = useLocation();
   const { count, openCart } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const hideTimer = useRef(null);
   const menuOpenRef = useRef(false);
-  const onHero = pathname === "/" && !scrolled && !hidden;
   menuOpenRef.current = menuOpen;
 
   useEffect(() => {
@@ -60,8 +44,6 @@ export default function Header() {
     };
 
     const onScroll = () => {
-      const away = window.scrollY > 40;
-      setScrolled(away);
       setHidden(false);
       armHide();
     };
@@ -78,116 +60,162 @@ export default function Header() {
     if (!menuOpen) return undefined;
     setHidden(false);
     window.clearTimeout(hideTimer.current);
-    return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, [menuOpen]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-        hidden ? "-translate-y-full" : "translate-y-0"
-      } ${onHero ? "shadow-none" : "shadow-[0_4px_24px_rgba(75,15,27,0.06)]"}`}
-    >
-      <div className="bg-[#4B0F1B] text-[#ffdf9c] overflow-hidden whitespace-nowrap h-9 flex items-center select-none border-b border-[#e9c168]/20">
-        <div className="animate-marquee flex items-center font-label-uppercase text-[11px] tracking-[0.22em]">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <span key={index} className="flex items-center mx-8">
-              NEW COLLECTIONS • ALL INDIA DELIVERY • ORDER ON WHATSAPP • SPECIAL OFFERS • HANDCRAFTED WEAR
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <div
-        className={`transition-colors ${
-          onHero ? "bg-transparent border-b border-transparent" : "bg-[#fff8f8]/95 backdrop-blur-md border-b border-[#c5a04a]/30"
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-40 bg-white transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          hidden ? "-translate-y-full" : "translate-y-0"
         }`}
       >
-        <div className="h-[88px] w-full px-margin-mobile md:px-margin flex items-center justify-between gap-gutter">
-          <div className="flex items-center shrink-0">
-            <NavLink
-              to="/"
-              aria-label="Shaani Clothing home"
-              className="flex items-center rounded-full transition-transform hover:scale-[1.03]"
-            >
-              <img
-                alt="Shaani Clothing"
-                decoding="async"
-                className="h-16 w-16 rounded-full object-cover ring-2 ring-[#c5a04a] shadow-[0_6px_18px_rgba(75,15,27,0.18)]"
-                src={LOGO_SRC}
-              />
-            </NavLink>
+        <div className="flex h-9 items-center overflow-hidden whitespace-nowrap border-b border-[#e9c168]/20 bg-[#4B0F1B] text-[#ffdf9c]">
+          <div className="animate-marquee flex items-center font-label-uppercase text-[10px] tracking-[0.18em] sm:text-[11px] sm:tracking-[0.22em]">
+            {Array.from({ length: 4 }).map((_, index) => (
+              <span key={index} className="mx-6 flex shrink-0 items-center">
+                NEW COLLECTIONS • ALL INDIA DELIVERY • ORDER ON WHATSAPP • SPECIAL OFFERS • HANDCRAFTED WEAR
+              </span>
+            ))}
           </div>
+        </div>
+        <div className="relative mx-auto flex h-16 w-full items-center justify-between px-4 md:h-[88px] md:px-8 lg:px-10">
+          <button
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded={menuOpen}
+            className={`${iconButtonClass} md:hidden`}
+            onClick={() => setMenuOpen(true)}
+          >
+            <span className="material-symbols-outlined text-[24px]">menu</span>
+          </button>
 
-          <nav className="hidden md:flex items-center justify-center gap-8 flex-1 px-space-md">
+          <nav className="hidden items-center gap-6 md:flex lg:gap-8">
             {NAV_LINKS.map((link) => (
-              <NavItem key={link.to} to={link.to} label={link.label} className={linkClass(onHero)} />
+              <NavItem key={link.to} to={link.to} label={link.label} className={desktopLinkClass} />
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 md:gap-2.5 shrink-0">
-            
-            <button type="button" aria-label="Open shopping cart" className={`${iconButtonClass} relative`} onClick={openCart}>
-              <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
-              <span className="absolute -top-0.5 -right-0.5 min-w-5 h-5 px-1 rounded-full bg-[#781829] text-white font-body-sm text-[10px] leading-none font-bold flex items-center justify-center shadow-sm border border-[#C5A04A]">
-                {count}
-              </span>
-            </button>
+          <NavLink
+            to="/"
+            aria-label="Shaani Clothing home"
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+          >
+            <img
+              alt="Shaani Clothing"
+              decoding="async"
+              className="size-11 object-contain md:size-16"
+              src={LOGO_SRC}
+            />
+          </NavLink>
+
+          <div className="ml-auto flex items-center gap-2 md:gap-4">
+            <Link
+              to="/shop"
+              aria-label="Search products"
+              className={`${iconButtonClass} hidden md:flex`}
+            >
+              <span className="material-symbols-outlined text-[25px]">search</span>
+            </Link>
             <a
-              className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-[#781829] text-[#fff8f8] border border-[#c5a04a] rounded-full font-label-uppercase text-[11px] tracking-wider hover:bg-[#4B0F1B] transition-all shadow-[0_4px_16px_rgba(120,24,41,0.25)]"
               href={WHATSAPP_URL}
               rel="noopener noreferrer"
               target="_blank"
+              className="hidden items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-[#4B0F1B] md:inline-flex"
             >
-              <span className="material-symbols-outlined text-[17px] text-[#e9c168]">chat</span>
+              <span className="material-symbols-outlined text-[19px] text-[#C5A04A]">chat</span>
               WhatsApp Order
             </a>
+            <Link
+              to="/shop"
+              aria-label="Browse products"
+              className={`${iconButtonClass} md:hidden`}
+            >
+              <span className="material-symbols-outlined text-[23px]">search</span>
+            </Link>
             <button
               type="button"
-              aria-label={menuOpen ? "Close menu" : "Open menu"}
-              className={`${iconButtonClass} md:hidden text-primary`}
-              onClick={() => setMenuOpen((open) => !open)}
+              aria-label={`Open shopping cart, ${count} items`}
+              className={iconButtonClass}
+              onClick={openCart}
             >
-              <span className="material-symbols-outlined text-[24px]">{menuOpen ? "close" : "menu"}</span>
+              <span className="material-symbols-outlined text-[23px]">shopping_bag</span>
+              {count > 0 ? (
+                <span className="absolute right-0 top-0 flex min-w-4 -translate-y-1/4 translate-x-1/4 items-center justify-center rounded-full bg-primary px-1 text-[10px] leading-4 text-white">
+                  {count}
+                </span>
+              ) : null}
             </button>
           </div>
         </div>
+      </header>
 
-        <AnimatePresence>
-          {menuOpen ? (
+      <AnimatePresence>
+        {menuOpen ? (
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/35 md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setMenuOpen(false)}
+          >
             <motion.nav
-              key="mobile-menu"
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="overflow-hidden border-t border-[#c5a04a]/25 bg-[#fff8f8] md:hidden"
+              aria-label="Mobile navigation"
+              className="flex h-full w-[min(84vw,320px)] flex-col bg-white px-5 pb-6 pt-5"
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(event) => event.stopPropagation()}
             >
-              <motion.div className="flex flex-col gap-2 px-margin-mobile py-4" variants={menuVariants} initial="hidden" animate="show">
-                {NAV_LINKS.map((link) => (
-                  <motion.div key={link.to} variants={itemVariants}>
-                    <NavItem
-                      to={link.to}
-                      label={link.label}
-                      onClick={() => setMenuOpen(false)}
-                      className="block rounded-2xl px-4 py-3 font-label-uppercase text-[13px] tracking-[0.16em] text-primary uppercase hover:bg-[#fbeaec]"
-                    />
-                  </motion.div>
-                ))}
-                <motion.a
-                  variants={itemVariants}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-[#c5a04a] bg-[#781829] px-5 py-3 font-label-uppercase text-[11px] tracking-wider text-[#fff8f8]"
-                  href={WHATSAPP_URL}
-                  rel="noopener noreferrer"
-                  target="_blank"
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-semibold tracking-[0.16em] text-primary uppercase">Menu</span>
+                <button
+                  type="button"
+                  aria-label="Close navigation menu"
+                  className="flex size-10 items-center justify-center text-[#241B1D]"
+                  onClick={() => setMenuOpen(false)}
                 >
-                  <span className="material-symbols-outlined text-[17px] text-[#e9c168]">chat</span>
-                  WhatsApp Order
-                </motion.a>
-              </motion.div>
+                  <span className="material-symbols-outlined text-[22px]">close</span>
+                </button>
+              </div>
+              <div className="mt-6 flex flex-col">
+                {NAV_LINKS.map((link) => (
+                  <NavItem
+                    key={link.to}
+                    to={link.to}
+                    label={link.label}
+                    onClick={() => setMenuOpen(false)}
+                    className={({ isActive }) =>
+                      `border-b border-[#f0dee1] py-4 text-sm transition-colors ${
+                        isActive ? "font-semibold text-primary" : "text-[#241B1D]"
+                      }`
+                    }
+                  />
+                ))}
+              </div>
+              <a
+                href={WHATSAPP_URL}
+                rel="noopener noreferrer"
+                target="_blank"
+                className="mt-auto inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-white"
+              >
+                <span className="material-symbols-outlined text-[18px] text-[#C5A04A]">chat</span>
+                WhatsApp Order
+              </a>
             </motion.nav>
-          ) : null}
-        </AnimatePresence>
-      </div>
-    </header>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </>
   );
 }

@@ -17,14 +17,12 @@ function ScrollToTop() {
 }
 
 export default function Layout() {
-  const { pathname } = useLocation();
-
   return (
     <div className="bg-background font-body-md text-on-surface antialiased min-h-screen">
       <ScrollToTop />
       <SiteSeo />
       <Header />
-      <main className={`w-full bg-background min-h-screen ${pathname === "/" ? "pt-0" : "pt-[124px]"}`}>
+      <main className="min-h-screen w-full bg-background pt-[100px] md:pt-[124px]">
         <Suspense fallback={<div className="min-h-[50vh]" aria-hidden="true" />}>
           <Outlet />
         </Suspense>

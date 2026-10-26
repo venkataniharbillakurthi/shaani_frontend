@@ -53,14 +53,8 @@ export default function ShopFilters({ values, onChange, sort, onSort, count, onC
         <span className="material-symbols-outlined pointer-events-none absolute right-3 bottom-2.5 text-[18px] text-[#4B0F1B]">expand_more</span>
       </label>
 
-      {categoryChosen || values.priceMode || values.query ? (
+      {values.priceMode || values.query ? (
         <div className="mt-3 flex flex-wrap gap-2 sm:hidden">
-          {categoryChosen ? (
-            <button type="button" onClick={() => onChange("category", "all")} className="inline-flex items-center gap-1 rounded-full bg-[#4B0F1B] px-3 py-1.5 text-xs text-[#FFFDFC]">
-              {category.name}
-              <span className="material-symbols-outlined text-[14px]">close</span>
-            </button>
-          ) : null}
           {values.priceMode ? (
             <button type="button" onClick={() => onChange("priceMode", "")} className="inline-flex items-center gap-1 rounded-full bg-[#4B0F1B] px-3 py-1.5 text-xs text-[#FFFDFC]">
               {priceLabel}
