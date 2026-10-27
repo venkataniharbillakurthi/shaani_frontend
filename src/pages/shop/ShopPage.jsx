@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { staggerContainer } from "../../animations/variants";
 import ProductCard from "../../components/common/ProductCard";
@@ -27,10 +27,22 @@ function readDraft(params) {
 export default function ShopPage() {
   const { products } = useCatalog();
   const [params, setParams] = useSearchParams();
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const bannerImages = useMemo(() => products.slice(0, 6).map((product) => product.images?.[0] ?? product.image), [products]);
   const values = readDraft(params);
-  const category = values.category;
-  const tag = params.get("tag") || "";
+  const searching = values.query.trim().length > 0;
+
+  useEffect(() => {
+    if (!searching) return;
+    if (!params.get("category") && !params.get("tag")) return;
+    const next = new URLSearchParams(params);
+    next.delete("category");
+    next.delete("tag");
+    setParams(next, { replace: true });
+  }, [searching, params, setParams]);
+
+  const category = searching ? "all" : values.category;
+  const tag = searching ? "" : params.get("tag") || "";
   const query = values.query;
   const sort = params.get("sort") || "name";
   const maxPrice = params.get("max") || "";
@@ -42,6 +54,8 @@ export default function ShopPage() {
 
   const onChange = (key, value) => {
     const nextValues = { ...values, [key]: value };
+    if (key === "query" && value.trim()) nextValues.category = "all";
+    if (key === "category" && value !== "all") nextValues.query = "";
     const next = new URLSearchParams();
     if (nextValues.category && nextValues.category !== "all") next.set("category", nextValues.category);
     if (nextValues.query) next.set("q", nextValues.query);
@@ -79,19 +93,36 @@ export default function ShopPage() {
 
       <section className="px-margin-mobile py-6 md:px-margin md:py-10">
         <div className="mx-auto max-w-6xl">
-          <ShopFilters
-            values={values}
-            onChange={onChange}
-            sort={sort}
-            count={visible.length}
-            onClear={() => setParams(new URLSearchParams())}
-            onSort={(value) => {
-              const next = new URLSearchParams(params);
-              if (value === "name") next.delete("sort");
-              else next.set("sort", value);
-              setParams(next);
-            }}
-          />
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <p className="text-sm text-[#781829]">
+              {visible.length} {visible.length === 1 ? "style" : "styles"}
+            </p>
+            <button
+              type="button"
+              aria-expanded={filtersOpen}
+              aria-controls="shop-filters"
+              onClick={() => setFiltersOpen((open) => !open)}
+              className="inline-flex items-center gap-2 rounded-full border border-[#E9D8C5] bg-[#FFFDFC] px-4 py-2 text-sm text-[#4B0F1B] shadow-[0_4px_12px_rgba(75,15,27,0.05)] transition-colors hover:bg-[#F8F3ED] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#781829]"
+            >
+              <span className="material-symbols-outlined text-[20px]" aria-hidden="true">tune</span>
+              Filters
+            </button>
+          </div>
+
+          <div id="shop-filters" hidden={!filtersOpen}>
+            <ShopFilters
+              values={{ ...values, category }}
+              onChange={onChange}
+              sort={sort}
+              onClear={() => setParams(new URLSearchParams())}
+              onSort={(value) => {
+                const next = new URLSearchParams(params);
+                if (value === "name") next.delete("sort");
+                else next.set("sort", value);
+                setParams(next);
+              }}
+            />
+          </div>
 
           <div className="mt-5">
             {visible.length === 0 ? (

@@ -22,7 +22,7 @@ function selectedPrice(mode) {
   return priceOptions.find(([value]) => value === mode)?.[1] || "";
 }
 
-export default function ShopFilters({ values, onChange, sort, onSort, count, onClear }) {
+export default function ShopFilters({ values, onChange, sort, onSort, onClear }) {
   const category = categories.find((item) => item.slug === values.category);
   const categoryChosen = Boolean(category && category.slug !== "all");
   const priceLabel = selectedPrice(values.priceMode);
@@ -114,16 +114,13 @@ export default function ShopFilters({ values, onChange, sort, onSort, count, onC
         </label>
       </div>
 
-      <div className="mt-4 flex items-center justify-between gap-3">
-        <p className="text-sm text-[#781829]">
-          {count} {count === 1 ? "style" : "styles"}
-        </p>
-        {filtering ? (
+      {filtering ? (
+        <div className="mt-4 flex justify-end">
           <button type="button" onClick={onClear} className="text-xs tracking-[0.12em] text-[#4B0F1B] uppercase">
             Clear
           </button>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </div>
   );
 }
