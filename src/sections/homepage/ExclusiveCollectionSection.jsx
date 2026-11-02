@@ -32,7 +32,7 @@ export default function ExclusiveCollectionSection({ products = [] }) {
         >
           {collection.map((product) => (
             <motion.div key={product.id} variants={staggerItem}>
-              <ProductCard product={product} />
+              <ProductCard product={product} priority={false} />
             </motion.div>
           ))}
         </motion.div>

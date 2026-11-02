@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { imageHover, staggerItem } from "../../animations/variants";
 import PricePair from "./PricePair";
 
-export default function ProductCard({ product, variants = staggerItem }) {
+export default function ProductCard({ product, variants = staggerItem, priority = false }) {
   const image = product.images?.[0] ?? product.image;
   const soldOut = product.stock === false;
 
@@ -17,7 +17,8 @@ export default function ProductCard({ product, variants = staggerItem }) {
       <motion.img
         alt={product.alt || product.name}
         src={image}
-        loading="lazy"
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "low"}
         decoding="async"
         className={`h-full w-full object-cover ${soldOut ? "brightness-90" : ""}`}
         whileHover={soldOut ? undefined : imageHover}

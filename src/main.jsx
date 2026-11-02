@@ -28,9 +28,9 @@ if (loader) {
   if (reduceMotion) {
     removeLoader();
   } else {
-    window.setTimeout(() => {
+    window.requestAnimationFrame(() => {
       loader.classList.add("is-leaving");
-      window.setTimeout(removeLoader, 700);
-    }, 1200);
+      window.setTimeout(removeLoader, 250);
+    });
   }
 }
